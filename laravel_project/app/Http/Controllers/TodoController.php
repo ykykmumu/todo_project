@@ -9,18 +9,17 @@ use App\Todo;
 class TodoController extends Controller
 {
     public function index() {
+
     $todos = Todo::all(); 
            return view('todos.index', ["todos" => $todos]);   
 }
 
 
 public function create(Request $request) {
-
-    $comment = $request->input('comment');
-    Todo::insert(["comment" => $comment]); 
-
-    $todos = Todo::all(); 
-    return view('todos.index', ["todos" => $todos]); 
+    $todos = new Todo;
+    $todos->comment = $request->comment;
+    $todos->save();
+    return redirect()->route('todos.index');
 
     }
 
