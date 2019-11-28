@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Todo;
+use App\Models\Todo;
 
 
 class TodoController extends Controller
@@ -53,6 +53,12 @@ public function create(Request $request) {
     //     return redirect('/todos');
     // }
 
+    public function destroy(Request $request)
+  {
+    $todos = Todo::find($request->id);
+    $todos->delete();
+    return redirect()->route('todos.index');
+  }
 
 }
 
