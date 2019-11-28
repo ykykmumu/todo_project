@@ -13,6 +13,6 @@
 
 
 Route::get('/todos', 'TodoController@index')->name('todos.index');
-Route::post('/todos', 'TodoController@create');
+Route::post('/todos', 'TodoController@create')->name('todos.create');
 //Route::post('/todos', 'TodoController@store');
-//Route::post('todos/destroy/{id}','TodoController@destroy');
+Route::post('todos/destroy/{id}','TodoController@destroy')->name('todos.destroy');
