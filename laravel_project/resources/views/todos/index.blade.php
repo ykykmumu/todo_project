@@ -14,6 +14,7 @@
 
 @isset($todos)
 @foreach ($todos as $todos)
+
 <table>
  <tr>
   <th>ID</th>
@@ -21,12 +22,18 @@
   <th>状態</th>
   </tr>
   <tr>
+  <th>{{$loop->iteration}}</th>
   <th>{{ $todos->id }}</th>
   <th>{{ $todos->comment }}</th>
-  <th> <button class="">作業中</button></th>
-  <th> <button class="">削除</button></th>
+  <th> <input type="submit" class="" value="作業中"></th>
+  <th><form action="{{ route('todos.delete',[ 'id' => $todos->id ])}}" method="POST">
+    @csrf
+    @method("DELETE")
+    <button type="submit">削除</button>
+</form></th>
   </tr>
 </table>
+
 @endforeach
 @endisset
 
