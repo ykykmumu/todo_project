@@ -14,5 +14,11 @@
 
 Route::get('/todos', 'TodoController@index')->name('todos.index');
 Route::post('/todos', 'TodoController@create')->name('todos.create');
-//Route::post('/todos', 'TodoController@store');
-Route::post('todos/destroy/{id}','TodoController@destroy')->name('todos.destroy');
+Route::delete('/delete/{id}','TodoController@delete')->name('todos.delete'); 
+
+
+
+
+//Route::post('/delete/{id}','TodoController@delete')->name('todos.delete');
+//Route::get('/delete','TodoController@delete')->name('todos.delete');
+//Route::match(['get','post'], ‘/delete/{id}’,’TodoController@delete’)->name(‘todos.delete’);
