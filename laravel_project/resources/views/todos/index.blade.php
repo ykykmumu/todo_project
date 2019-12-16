@@ -16,22 +16,37 @@
 @foreach ($todos as $todos)
 
 <table>
- <tr>
+<tr>
   <th>ID</th>
   <th>コメント</th>
   <th>状態</th>
-  </tr>
-  <tr>
+</tr>
+
+<tr>
   <th>{{$loop->iteration}}</th>
-  <th>{{ $todos->id }}</th>
   <th>{{ $todos->comment }}</th>
-  <th> <input type="submit" class="" value="作業中"></th>
-  <th><form action="{{ route('todos.delete',[ 'id' => $todos->id ])}}" method="POST">
+  
+
+
+  <th> 
+    <form action="{{route('todos.update',['id' => $todos->id])}}" method="POST">    
+    @csrf
+    @if($todos->tag==="作業中")
+    <input type="submit" name="tag" value="作業中">
+    @else($todos->tag==="完了")
+    <input type="submit" name="tag" value="完了">
+    @endif
+    </form>
+  </th>
+
+  <th>
+    <form action="{{ route('todos.delete',[ 'id' => $todos->id ])}}" method="POST">
     @csrf
     @method("DELETE")
     <button type="submit">削除</button>
-</form></th>
-  </tr>
+    </form>
+  </th>
+</tr>
 </table>
 
 @endforeach

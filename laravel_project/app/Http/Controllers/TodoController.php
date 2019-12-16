@@ -10,19 +10,48 @@ class TodoController extends Controller
 {
     public function index() {
 
-    $todos = Todo::all(); 
+      $todos = Todo::all(); 
            return view('todos.index', ["todos" => $todos]);   
-}
+    }
 
 
-public function create(Request $request) {
-    $todos = new Todo;
-    $todos->comment = $request->comment;
-    $todos->save();
-    return redirect()->route('todos.index');
+    public function create(Request $request) {
+
+      $todos = new Todo;
+      $todos->comment = $request->comment;
+      $todos->save();
+      return redirect()->route('todos.index');
 
     }
 
+
+    public function update(Request $request, $id){
+      $todos = Todo::find($id);
+      $todos->tag = $request->tag;
+      if ($request->tag === '作業中') {
+        $todos->tag = '完了';
+      }elseif ($request->tag === '完了'){
+        $todos->tag = '作業中';}
+      $todos->save();
+      return redirect()->route('todos.index');
+    }
+
+
+    
+
+    public function delete(Request $request, $id){
+      $todos = Todo::find($id);
+      $todos->delete();
+      return redirect()->route('todos.index');
+    }
+
+
+}
+
+
+// $todos = Todo::find($id);
+//       $todos->tag = $request->tag;
+//       $todos->save();
 
 
 // public function create() {
@@ -67,13 +96,7 @@ public function create(Request $request) {
 // return redirect()->route('todos.index');
 // }
 
-public function delete(Request $request, $id){
-  $todos = Todo::find($id);
-  $todos->delete();
-  return redirect()->route('todos.index');
-}
+
 
  
-
-}
 

@@ -16,6 +16,7 @@ class CreateTodosTable extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('comment');
+            $table->string('tag')->default('作業中');
             $table->timestamps();
         });
     }
