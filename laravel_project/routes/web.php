@@ -13,9 +13,9 @@
 
 
 Route::get('/todos', 'TodoController@index')->name('todos.index');
-Route::post('/todos/post', 'TodoController@store')->name('todos.store');
-Route::post('/update/{id}','TodoController@update')->name('todos.update'); 
-Route::delete('/delete/{id}','TodoController@delete')->name('todos.delete'); 
+Route::put('/todos/put', 'TodoController@store')->name('todos.store');
+Route::post('/todos/{id}','TodoController@update')->name('todos.update'); 
+Route::delete('/todos/{id}','TodoController@delete')->name('todos.delete'); 
 
 
 
