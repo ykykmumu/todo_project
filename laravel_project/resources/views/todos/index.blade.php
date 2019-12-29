@@ -7,10 +7,17 @@
 
 <h1>TODOリスト</h1>
 <br>
-<input type="radio">すべて
-<input type="radio">作業中
-<input type="radio">完了
-
+<form action="{{route('todos.index')}}"> 
+    @csrf
+    <input type="submit"" value="すべて" name="">
+    <label for="name">すべて</label>
+    
+    <input type="submit" value="作業中" name="tag">
+    <label for="name">作業中</label>
+    
+    <input type="submit" value="完了" name="tag">
+    <label for="name">完了</label>
+  </form>
 
 @isset($todos)
 @foreach ($todos as $todos)
@@ -54,13 +61,17 @@
 
 
 <h2>新規タスクの追加</h2>
-<form action="/todos" method="POST">
-    
+<form action="/todos/post" method="POST">
+    @csrf
     <textarea name="comment" rows="1" cols="25"></textarea>
-    
-    {{ csrf_field() }}
     <button class="btn"> 追加 </button>
 </form>
 
 </body>
 </html>
+
+
+
+
+
+
